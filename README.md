@@ -1,15 +1,26 @@
 # User Authorization UI
 
-A mockup of a **user authorization window** designed to demonstrate how technical details about the user can be displayed during an authorization attempt.
+A responsive UI mockup that simulates a **user authorization window**, enriched with detailed technical information gathered at login time.
 
-The interface reveals:
+### ✨ Features
 
-- IP address  
-- Client ID  
-- Geolocation  
-- VPN / Proxy usage  
-- Device, OS, and browser details
+This interface dynamically displays:
 
-📡 All data is collected using [Fingerprint](https://fingerprint.com/), a service for browser fingerprinting and user intelligence.
+- 🌐 IP address and geolocation  
+- 🆔 Visitor (Client) ID  
+- 🧭 VPN / Proxy usage detection  
+- 🖥 Device, OS, and browser details  
+- 🕵️ Incognito mode, developer tools & VM detection  
+- 📊 Confidence score from FingerprintJS
 
-🔗 [Live Demo on Vercel](https://project-miummfqky-alecs-projects-f4a4bb15.vercel.app/)
+### 🧠 Powered by
+
+📡 [**FingerprintJS**](https://fingerprint.com/) — a privacy-friendly browser fingerprinting service used for detecting fraud, bots, and unauthorized logins.
+
+### 🚀 Live Demo
+
+👉 [View it on Vercel](https://project-au-black.vercel.app/)
+
+---
+
+Feel free to clone or fork the project and explore how browser signals can enhance user verification UIs.
