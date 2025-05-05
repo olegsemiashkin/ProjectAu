@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Профиль пользователя - John Doe</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6fa;
+    color: #111827;
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 40px auto;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+  }
+
+  .info-block {
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 0 0 1px #e5e7eb;
+  }
+
+  th, td {
+    padding: 16px 18px;
+    background: white;
+    font-size: 15px;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  th {
+    background: #eef1f6;
+    text-transform: uppercase;
+    font-size: 13px;
+    color: #4b5563;
+    letter-spacing: 0.04em;
+  }
+
+  tr:hover td {
+    background-color: #f0f4fa;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 6px;
+  }
+
+  .green { background-color: #16a34a; }
+  .red { background-color: #dc2626; }
+
+  .device-entry {
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+
+  .device-os {
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .copy-btn, .plus-btn {
+    font-size: 14px;
+    color: #2563eb;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .copy-btn:hover, .plus-btn:hover {
+    color: #1d4ed8;
+  }
+
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .popup-content {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    width: 440px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: fadeIn 0.25s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .popup-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  .popup-table th, .popup-table td {
+    border: 1px solid #e5e7eb;
+    padding: 8px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .close-popup {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 20px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .close-popup:hover {
+    color: #111827;
+  }
+
+  .native-header, .native-cell {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+.clickable {
+  color: #2563eb;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+table {
+  table-layout: fixed;
+}
+th, td {
+  font-size: 13px;
+  padding: 6px 10px;
+  text-align: center;
+  vertical-align: middle;
+  word-wrap: break-word;
+}
+
+table, th, td {
+  border: 1px solid #d1d5db;
+}
+table {
+  border-collapse: collapse;
+}
+
+.device-entry div > div:first-child {
+  white-space: nowrap;
+}
+
+td:nth-child(5) {
+  text-align: left;
+}
+
+.device-client-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+.device-client-left {
+  text-align: left;
+}
+.device-client-left .device-name {
+  font-weight: 500;
+  white-space: nowrap;
+}
+.device-client-left .device-os {
+  font-size: 11px;
+  color: #6b7280;
+}
+.device-client-id {
+  font-family: monospace;
+  font-size: 13px;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.info-block {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 20px 30px;
+  margin-bottom: 30px;
+  line-height: 1.8;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+.info-block b {
+  display: inline-block;
+  min-width: 160px;
+  font-weight: 600;
+  color: #1f2937;
+}
+</style>
+</head>
+<body><div class="container">
+<div class="info-block">
+<b>User name:</b> John Doe<br/>
+<b>User email:</b> john.doe@example.com<br/>
+<b>Device types:</b> PC (70%), smartphone (30%)<br/>
+<b>Number of logins:</b> 111<br/>
+<b>Anonymous usage:</b> 75%<br/>
+<b>GEO:</b> Moscow 🇷🇺
+</div>
+<table>
+<thead>
+<tr>
+<th>Session</th>
+<th>IP Address <span class="copy-btn" onclick="copyColumn('ip')">📋</span></th>
+<th>VPN/Proxy</th>
+<th>Provider</th>
+<th>Device</th>
+<th>Client ID <span class="copy-btn" onclick="copyColumn('client')">📋</span></th>
+<th>Browser</th>
+<th>GEO</th>
+<th class="native-header">Native-App</th>
+</tr>
+</thead>
+<tbody id="table-body"></tbody>
+</table>
+<div class="popup-overlay" id="popup" onclick="closePopupOnOverlay(event)">
+<div class="popup-content">
+<span class="close-popup" onclick="closePopup()">×</span>
+<table class="popup-table" id="popup-table"></table>
+</div>
+</div>
+<div id="copy-notification" style="display:none; position:fixed; top:20px; right:20px; background:#34c759; color:white; padding:10px 15px; border-radius:6px; z-index:10000;">Copied!</div>
+<script>
+const sessionData = [
+  {
+    "ip": "185.45.112.101",
+    "time": "21/11/2024 14:30",
+    "status": "green",
+    "provider": "ProtonVPN",
+    "browser": "Edge (119)",
+    "geo": "London 🇬🇧",
+    "vpn": "VPN",
+    "native": "Yes",
+    "clients": [
+      {
+        "id": "8sYuZPxL12aaQw92",
+        "device": "Google Pixel 7",
+        "os": "Android 14",
+        "emulator": "No",
+        "active": "No",
+        "incognito": "No",
+        "vm": "No"
+      },
+      {
+        "id": "PaXxUuS11xwMq47q",
+        "device": "Sony Xperia 5",
+        "os": "Android 13",
+        "emulator": "Yes",
+        "active": "No",
+        "incognito": "No",
+        "vm": "No"
+      }
+    ]
+  },
+  {
+    "ip": "185.45.112.102",
+    "time": "22/11/2024 15:45",
+    "status": "green",
+    "provider": "Smartproxy",
+    "browser": "Edge (119)",
+    "geo": "London 🇬🇧",
+    "vpn": "Proxy",
+    "native": "Yes",
+    "clients": [
+      {
+        "id": "8sYuZPxL12aaQw92",
+        "device": "Google Pixel 7",
+        "os": "Android 14",
+        "emulator": "No",
+        "active": "Yes",
+        "incognito": "No",
+        "vm": "No"
+      },
+      {
+        "id": "Zp12XtKqLw9aVu33",
+        "device": "Pixel 6a",
+        "os": "Android 13",
+        "emulator": "No",
+        "active": "No",
+        "incognito": "No",
+        "vm": "No"
+      }
+    ]
+  },
+  {
+    "ip": "185.45.112.103",
+    "time": "23/11/2024 10:05",
+    "status": "green",
+    "provider": "-",
+    "browser": "Edge (119)",
+    "geo": "London 🇬🇧",
+    "vpn": "-",
+    "native": "Yes",
+    "clients": [
+      {
+        "id": "8sYuZPxL12aaQw92",
+        "device": "Google Pixel 7",
+        "os": "Android 14",
+        "emulator": "Yes",
+        "active": "Yes",
+        "incognito": "Yes",
+        "vm": "No"
+      },
+      {
+        "id": "PaXxUuS11xwMq47q",
+        "device": "Sony Xperia 5",
+        "os": "Android 13",
+        "emulator": "Yes",
+        "active": "No",
+        "incognito": "Yes",
+        "vm": "No"
+      }
+    ]
+  },
+  {
+    "ip": "91.213.233.42",
+    "time": "22/11/2024 11:00",
+    "status": "red",
+    "provider": "Bright Data",
+    "browser": "Opera (104)",
+    "geo": "Tokyo 🇯🇵",
+    "vpn": "Proxy",
+    "native": "No",
+    "clients": [
+      {
+        "id": "Zz88rQqMnLtVv99o",
+        "device": "Realme GT Neo",
+        "os": "Android 12",
+        "emulator": "Yes",
+        "active": "Yes",
+        "incognito": "Yes",
+        "vm": "No"
+      },
+      {
+        "id": "Tm67UyLaAqpOwB12",
+        "device": "ASUS Zenfone 9",
+        "os": "Android 13",
+        "emulator": "No",
+        "active": "No",
+        "incognito": "Yes",
+        "vm": "Yes"
+      }
+    ]
+  },
+  {
+    "ip": "37.120.215.88",
+    "time": "23/11/2024 17:20",
+    "status": "green",
+    "provider": "ExpressVPN",
+    "browser": "Brave (119)",
+    "geo": "Paris 🇫🇷",
+    "vpn": "VPN",
+    "native": "Yes",
+    "clients": [
+      {
+        "id": "Wk22PfErTrYp8LmZ",
+        "device": "Nothing Phone 2",
+        "os": "Android 14",
+        "emulator": "Yes",
+        "active": "No",
+        "incognito": "Yes",
+        "vm": "No"
+      },
+      {
+        "id": "Lf39QxXeZzMu0PnK",
+        "device": "iPhone SE",
+        "os": "iOS 16",
+        "emulator": "Yes",
+        "active": "No",
+        "incognito": "No",
+        "vm": "Yes"
+      }
+    ]
+  },
+  {
+    "ip": "243.184.145.163",
+    "time": "16/11/2024 11:55",
+    "status": "green",
+    "provider": "Datacamp",
+    "browser": "Chrome&nbsp;(120)",
+    "geo": "Moscow 🇷🇺",
+    "vpn": "-",
+    "native": "Yes",
+    "clients": [
+      {
+        "id": "Aq92iVEfKkUb1pnXu4JK",
+        "device": "Samsung Galaxy S21",
+        "os": "Android 11",
+        "emulator": "No",
+        "active": "Yes",
+        "incognito": "No",
+        "vm": "No"
+      },
+      {
+        "id": "Zx99aVLMopQw1XYuA1AA",
+        "device": "iPhone 14 Pro",
+        "os": "iOS 17",
+        "emulator": "Yes",
+        "active": "Yes",
+        "incognito": "Yes",
+        "vm": "Yes"
+      }
+    ]
+  },
+  {
+    "ip": "152.98.76.21",
+    "time": "19/11/2024 10:10",
+    "status": "red",
+    "provider": "NordVPN",
+    "browser": "Safari (17)",
+    "geo": "New&nbsp;York&nbsp;🇺🇸",
+    "vpn": "VPN",
+    "native": "No",
+    "clients": [
+      {
+        "id": "Bk91PfKqLb1pnVs3JK",
+        "device": "iPhone 13",
+        "os": "iOS 17",
+        "emulator": "No",
+        "active": "No",
+        "incognito": "No",
+        "vm": "No"
+      },
+      {
+        "id": "Qw12XaErOpLr0AVvB8ZZ",
+        "device": "Samsung A52",
+        "os": "Android 13",
+        "emulator": "No",
+        "active": "No",
+        "incognito": "No",
+        "vm": "No"
+      }
+    ]
+  }
+];
+
+
+function generateTable() {
+  const tbody = document.getElementById('table-body');
+  sessionData.forEach(item => {
+    const tr = document.createElement('tr');
+
+    
+
+const devicesClientsHTML = item.clients.map(c => `
+  <div class="device-client-row">
+    <div class="device-client-left">
+      <div class="device-name" title="Emulator: ${c.emulator} | Active: ${c.active} | Incognito: ${c.incognito} | VM: ${c.vm}">${c.device}</div>
+      <div class="device-os">${c.os}</div>
+    </div>
+    <div><span class="device-client-id" title="${c.id}" onclick="openPopup('${c.id}', 'client')">${c.id.slice(0, 8)}</span></div>
+  </div>
+`).join('');
+
+
+
+    
+
+    const sessionCell = `<div class="session-cell"><span>${item.time} <span class="status-dot ${item.status}"></span></span></div>`;
+
+    const ipCell = `<span class="clickable" onclick="openPopup('${item.ip}', 'ip')">${item.ip}</span>`;
+
+    tr.innerHTML = `
+      <td>${sessionCell}</td>
+      <td>${ipCell}</td>
+      <td>${item.vpn}</td>
+      <td>${item.provider}</td>
+      <td colspan='2'>${devicesClientsHTML}</td>
+      <td>${item.browser}</td>
+      <td>${item.geo}</td>
+      <td>${item.native}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+
+
+
+
+function openPopup(value, type) {
+  const table = document.getElementById('popup-table');
+  table.innerHTML = '<tr><th>Value</th><th>Time</th></tr>';
+  let count = 0;
+  sessionData.forEach(item => {
+    if (type === 'ip' && item.ip === value) {
+      if (count < 3) { table.innerHTML += `<tr><td>${item.ip}</td><td>${item.time}</td></tr>`; count++; }
+      count++;
+    }
+    if (type === 'client') {
+      item.clients.forEach(c => {
+        if (c.id === value) {
+          table.innerHTML += `<tr><td>${c.id}</td><td>${item.time}</td></tr>`;
+          count++;
+        }
+      });
+    }
+  });
+  document.getElementById('popup').style.display = 'flex';
+}
+
+
+
+
+function closePopup() { document.getElementById('popup').style.display = 'none'; }
+function closePopupOnOverlay(e) { if (e.target.id === 'popup') { closePopup(); }}
+function copyColumn(type) {
+  let values = [];
+  sessionData.forEach(item => {
+    if (type === 'ip') values.push(item.ip);
+    if (type === 'client') item.clients.forEach(c => values.push(c.id));
+  });
+  navigator.clipboard.writeText(values.join('\n')).then(() => {
+    const n = document.getElementById('copy-notification');
+    n.style.display = 'block';
+    setTimeout(() => { n.style.display = 'none'; }, 2000);
+  });
+}
+
+generateTable();
+</script>
+</div></body>
+</html>
